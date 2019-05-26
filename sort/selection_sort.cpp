@@ -4,30 +4,21 @@
 
 using namespace std;
 
-void BubbleSort(vector<int> &array)
+void SelectionSort(vector<int> &array)
 {
     for (int i = 0; i < array.size(); i++)
     {
-        int count = 0;
-        int value = array[0];
-        for (int j = 1; j < array.size() - i; j++)
+        int minIndex = i;
+        for (int j = i + 1; j < array.size(); j++)
         {
-            if (value <= array[j])
+            if (array[j] < array[minIndex])
             {
-                value = array[j];
-            } 
-            else 
-            {
-                int tmp = array[j];
-                array[j] = array[j - 1];
-                array[j - 1] = tmp;
-                count++;
+                minIndex = j;
             }
         }
-        if (0 == count)
-        {
-            break;
-        }
+        int tmp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = tmp;
     }
 }
 
@@ -45,7 +36,7 @@ int main()
     array.push_back(7);
     array.push_back(8);
 
-    BubbleSort(array);  // expected: 1 2 3 4 5 6 7 8 9
+    SelectionSort(array);
 
     for (int i = 0; i < array.size(); i++)
     {
